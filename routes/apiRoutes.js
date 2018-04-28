@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.post('/api/tables', function(req, res){
     let newCustomer = req.body
     newCustomer.routeName = newCustomer.name.replace(/\s+/g, '').toLowerCase()
-    if(tables.length < 2) {
+    if(tables.length < 8) {
       tables.push(newCustomer)
       res.json(true)
     } else {
