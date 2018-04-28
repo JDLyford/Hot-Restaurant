@@ -87,7 +87,10 @@
        $("#waitlist").append($("<li>")
           .addClass("list-group-item").text("You have " + wait + " people waiting!"))
     })
-   
+  
+    $(".clear").on("click", function(){
+      $.delete("/api/reservations").then(console.log("worked?"));
+    })
   </script>
 </body>
 <footer>
@@ -95,7 +98,8 @@
     <p>
       <a href="/api/tables">API Table Link</a> |
       <a href="/api/reservations">API Reservations and WaitList</a> |
-      <a href="https://github.com/JDLyford/Hot-Restaurant">GitHub</a>
+      <a href="https://github.com/JDLyford/Hot-Restaurant">GitHub</a> |
+      <button class="clear">Clear All Reservations</button>
     </p>
   </div>
 </footer>
