@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" />
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <title>Hot Restuarant | Make RSVP</title>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="jumbotron">
+    <h1 class="display-4 text-center">Hot Resturant</h1>
+    <p class="lead text-center">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p class="text-center">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead d-flex justify-content-center">
+      <a class="btn btn-primary btn-lg mx-2" href="/" role="button">
+        <i class="fas fa-home"></i> Home</a>
+      <a class="btn btn-primary btn-lg mx-2" href="/tables" role="button">
+        <i class="fas fa-utensils"></i> Tables</a>
+    </p>
+  </div>
+  <div class="container">
+    <h2 class="display-4">Make a Reservation With Us!</h2>
+    <hr class="my-4">
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="name" class="form-control mb-4" id="name" placeholder="John Doe">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="phone" class="form-control mb-4" id="phoneNumber" placeholder="555-555-5555">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control mb-4" id="email" placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label for="numberOfPeople">Size of Party</label>
+        <select class="form-control" id="numberOfPeople">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary mb-4" id="submit">Submit</button>
+    </form>
+  </div>
+  <script type="text/javascript">
+    $('#submit').on('click', function(event){
+    event.preventDefault()
+    
+    let reservationRequest = {
+      name: $('#name').val().trim(),
+      phoneNumber: $('#phoneNumber').val().trim(),
+      email: $('#email').val().trim(),
+      numberOfPeople: $('#numberOfPeople').val()
+    }
+    
+    
+    $.post('api/tables', reservationRequest, function(response){
+      console.log(response)
+      if(response) {
+        alert('Your table is ready!')
+      } else {
+        alert('You are on the waitlist');
+      }
+      //clear form when submitting
+      $("#name").val("");
+      $("#phoneNumber").val("");
+      $("#email").val("");
+      $("#numberOfPeople").val("1");
+    });
+  })
+  </script>
+</body>
+</html>

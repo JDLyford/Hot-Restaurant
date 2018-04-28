@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Make Reservation | Hot Restuarant</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+
+
+</head>
+
+<body>
+  <div class="jumbotron">
+    <h1 class="display-4 text-center">
+      <i class="fab fa-gripfire"></i>Hot Resturant</h1>
+    <p class="lead text-center">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p class="text-center">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead d-flex justify-content-center">
+      <a class="btn btn-primary btn-lg mx-2" href="/" role="button">
+        <i class="fas fa-home"></i> Home</a>
+      <a class="btn btn-primary btn-lg mx-2" href="/reservations" role="button">
+        <i class="fas fa-glass-martini"></i> Make Reservation</a>
+    </p>
+  </div>
+
+  <div class="card mb-3 ">
+    <div class="card-header">
+      <h2 class="text-center">Tables</h2>
+    </div>
+    <div class="card-body">
+      <ul id="tables" class="list-group list-group-flush">
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <h2 class="text-center">Waitlist</h2>
+    </div>
+    <div class="card-body">
+      <ul id="waitlist" class="list-group list-group-flush">
+       
+      </ul>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var tabs = 8
+    $.get("/api/tables").then(data => {
+      data.forEach(table => {
+        var tableLi = $("<li>")
+          .addClass("list-group-item")
+          .append($("<h4>").text("Name: " + table.name)
+            .append($("<span>").text("Number of People: " + table.numberOfPeople)
+              .addClass("float-right")))
+          .prependTo("#tables")
+          tabs--
+      })
+      $("#tables").append($("<li>")
+          .addClass("list-group-item").text("You have " + tabs + " table(s) open!"))
+    })
+    
+    var wait = 0
+    $.get("/api/reservations").then(data => {
+      data.forEach(table => {
+        var tableLi = $("<li>")
+          .addClass("list-group-item")
+          .append($("<h4>").text("Name: " + table.name)
+            .append($("<span>").text("Number of People: " + table.numberOfPeople)
+              .addClass("float-right")))
+          .appendTo("#waitlist")
+          wait++
+      })
+       $("#waitlist").append($("<li>")
+          .addClass("list-group-item").text("You have " + wait + " people waiting!"))
+    })
+   
+  </script>
+</body>
+
+</html>
