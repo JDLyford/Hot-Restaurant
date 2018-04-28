@@ -70,8 +70,7 @@
     $.post('api/tables', reservationRequest, function(response){
       console.log(response)
       if(response) {
-        alert('Your table is ready!');
-        console.log(numberOfPeople + numberOfPeople);
+        alert('Your table is ready!')
       } else {
         alert('You are on the waitlist');
       }
@@ -79,7 +78,7 @@
       $("#name").val("");
       $("#phoneNumber").val("");
       $("#email").val("");
-      $("#numberOfPeople").val(null);
+      $("#numberOfPeople").val("1");
     });
   })
   </script>
