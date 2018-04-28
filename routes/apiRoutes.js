@@ -18,8 +18,8 @@ module.exports = function(app) {
       tables.push(newCustomer)
       res.json(true)
     } else {
-      reservations.push(req.newCustomer)
-      res.json(true)
+      reservations.push(newCustomer)
+      res.json(false)
     }
     process.stdout.write('\x1B[2J\x1B[3J\x1B[H')
     console.log(tables)
