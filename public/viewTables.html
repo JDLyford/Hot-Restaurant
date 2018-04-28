@@ -55,7 +55,16 @@
     </div>
   </div>
 
-  
+  <footer>
+    <div class="container text-center">
+      <p>
+        <a href="/api/tables">API Table Link</a> |
+        <a href="/api/reservations">API Reservations and WaitList</a> |
+        <a href="https://github.com/JDLyford/Hot-Restaurant">GitHub</a> |
+        <button type="button" class="clear">Clear All Reservations</button>
+      </p>
+    </div>
+  </footer>
 
   <script type="text/javascript">
     var tabs = 8
@@ -89,19 +98,11 @@
     })
   
     $(".clear").on("click", function(){
-      $.delete("/api/reservations").then(console.log("worked?"));
+      /* $.get("/api/reservations").then(reservations.length = 0); */
+      console.log("dalkfs") 
     })
   </script>
 </body>
-<footer>
-  <div class="container text-center">
-    <p>
-      <a href="/api/tables">API Table Link</a> |
-      <a href="/api/reservations">API Reservations and WaitList</a> |
-      <a href="https://github.com/JDLyford/Hot-Restaurant">GitHub</a> |
-      <button class="clear">Clear All Reservations</button>
-    </p>
-  </div>
-</footer>
+
 
 </html>
